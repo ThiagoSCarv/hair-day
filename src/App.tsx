@@ -1,6 +1,7 @@
 import Text from "./components/text";
 import Trash from "./assets/Trash.svg?react";
 import Icon from "./components/icon";
+import Button from "./components/button";
 
 function App() {
 	return (
@@ -13,6 +14,8 @@ function App() {
 			</Text>
 			<Icon iconSvg={Trash} size="size-md" iconColor="color-yellow-dark" />
 			<Icon iconSvg={Trash} size="size-sm" />
+			<Button>AGENDAR</Button>
+			<Button disabled>AGENDAR</Button>
 		</div>
 	);
 }
