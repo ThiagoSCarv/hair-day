@@ -9,6 +9,7 @@ const iconVariants = cva("", {
 		iconColor: {
 			"color-yellow": "fill-yellow",
 			"color-yellow-dark": "fill-yellow-dark",
+			"color-gray-300": "fill-gray-300",
 		},
 	},
 	defaultVariants: {
@@ -17,7 +18,7 @@ const iconVariants = cva("", {
 	},
 });
 
-interface IconProps
+export interface IconProps
 	extends React.ComponentProps<"svg">,
 		VariantProps<typeof iconVariants> {
 	iconSvg: React.FC<React.ComponentProps<"svg">>;

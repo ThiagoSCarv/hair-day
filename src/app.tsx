@@ -2,6 +2,7 @@ import Text from "./components/text";
 import Trash from "./assets/Trash.svg?react";
 import Icon from "./components/icon";
 import Button from "./components/button";
+import Input from "./components/input";
 
 function App() {
 	return (
@@ -16,6 +17,9 @@ function App() {
 			<Icon iconSvg={Trash} size="size-sm" />
 			<Button>AGENDAR</Button>
 			<Button disabled>AGENDAR</Button>
+			<Input variant="primary" />
+			<Input variant="secondary" model="md" type="date" />
+			<Input variant="secondary" model="sm" type="date" />
 		</div>
 	);
 }
