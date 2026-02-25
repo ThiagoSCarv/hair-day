@@ -4,7 +4,8 @@ import Icon from "./components/icon";
 import Button from "./components/button";
 import ButtonIcon from "./components/buttonIcon";
 import InputDate from "./components/inputDate";
-import InputText from "./components/input";
+import InputText from "./components/inputText";
+import { InputCheckBox } from "./components/inputCheckbox";
 
 function App() {
 	return (
@@ -23,7 +24,8 @@ function App() {
 			<InputDate model="sm" />
 			<InputText />
 			<ButtonIcon />
-			<input type="checkbox" />
+			<InputCheckBox>09:00</InputCheckBox>
+			<InputCheckBox disabled>10:00</InputCheckBox>
 		</div>
 	);
 }
