@@ -2,7 +2,9 @@ import Text from "./components/text";
 import Trash from "./assets/Trash.svg?react";
 import Icon from "./components/icon";
 import Button from "./components/button";
-import Input from "./components/input";
+import ButtonIcon from "./components/buttonIcon";
+import InputDate from "./components/inputDate";
+import InputText from "./components/input";
 
 function App() {
 	return (
@@ -13,13 +15,15 @@ function App() {
 			<Text className="text-gray-500" variant="title-sm">
 				Olá Mundo
 			</Text>
-			<Icon iconSvg={Trash} size="size-md" iconColor="color-yellow-dark" />
+			<Icon iconSvg={Trash} size="size-md" />
 			<Icon iconSvg={Trash} size="size-sm" />
 			<Button>AGENDAR</Button>
 			<Button disabled>AGENDAR</Button>
-			<Input variant="primary" />
-			<Input variant="secondary" model="md" type="date" />
-			<Input variant="secondary" model="sm" type="date" />
+			<InputDate />
+			<InputDate model="sm" />
+			<InputText />
+			<ButtonIcon />
+			<input type="checkbox" />
 		</div>
 	);
 }
