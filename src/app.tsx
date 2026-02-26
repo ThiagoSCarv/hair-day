@@ -6,6 +6,7 @@ import ButtonIcon from "./components/buttonIcon";
 import InputDate from "./components/inputDate";
 import InputText from "./components/inputText";
 import { InputCheckBox } from "./components/inputCheckbox";
+import { ListItem } from "./components/listItem";
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 			<ButtonIcon />
 			<InputCheckBox>09:00</InputCheckBox>
 			<InputCheckBox disabled>10:00</InputCheckBox>
+			<ListItem hour="08:00" name="Ryan Dorwart" />
 		</div>
 	);
 }
