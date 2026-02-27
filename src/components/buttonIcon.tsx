@@ -21,7 +21,7 @@ export default function ButtonIcon({ className, ...props }: ButtonIconProps) {
 			<Icon
 				iconSvg={TrashIcon}
 				className="group-hover:fill-yellow-dark fill-yellow"
-				size="size-md"
+				size="size-sm"
 			/>
 		</div>
 	);
