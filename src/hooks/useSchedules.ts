@@ -2,22 +2,23 @@ import { useLocalStorage } from "usehooks-ts";
 import { type Schedule, SCHEDULE_KEY } from "../models/schedule";
 
 export default function useSchedule() {
-	const [schedules, setSchedule, removeSchedule] = useLocalStorage<Schedule[]>(
-		SCHEDULE_KEY,
-		[],
-	);
+  const [schedules, setSchedule, removeSchedule] = useLocalStorage<Schedule[]>(
+    SCHEDULE_KEY,
+    [],
+  );
 
-	function createNewSchedule(schedule: Schedule) {
-		setSchedule([...schedules, schedule]);
-	}
+  function createNewSchedule(schedule: Schedule) {
+    setSchedule([...schedules, schedule]);
+  }
 
-	function removeScheduleById(id: string) {
-		setSchedule(schedules.filter((schedule) => schedule.id !== id));
-	}
+  function removeScheduleById(id: string) {
+    setSchedule(schedules.filter((schedule) => schedule.id !== id));
+  }
 
-	return {
-		createNewSchedule,
-		schedules,
-		removeScheduleById,
-	};
+  return {
+    createNewSchedule,
+    schedules,
+    removeScheduleById,
+    removeSchedule,
+  };
 }
