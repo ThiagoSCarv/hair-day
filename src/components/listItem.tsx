@@ -3,12 +3,19 @@ import Text from "./text";
 import ButtonIcon from "./buttonIcon";
 
 interface ListItemProps extends React.ComponentProps<"li"> {
+	id: string;
 	hour: string;
 	name: string;
 	className?: string;
 }
 
-export function ListItem({ hour, name, className, ...props }: ListItemProps) {
+export function ListItem({
+	id,
+	hour,
+	name,
+	className,
+	...props
+}: ListItemProps) {
 	return (
 		<li className="flex items-center w-full max-w-164" {...props}>
 			<div className="flex justify-center items-center gap-5">
@@ -19,7 +26,7 @@ export function ListItem({ hour, name, className, ...props }: ListItemProps) {
 					{name}
 				</Text>
 			</div>
-			<ButtonIcon className="ml-auto" />
+			<ButtonIcon id={id} className="ml-auto" />
 		</li>
 	);
 }

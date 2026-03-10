@@ -4,21 +4,25 @@ import SunHorizon from "../assets/SunHorizon.svg?react";
 import MoonStars from "../assets/MoonStars.svg?react";
 import Text from "./text";
 import { ListItem } from "./listItem";
-import { exampleList } from "../utils/exampleSchedule";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
+import useSchedule from "../hooks/useSchedules";
+
+const todayDate = dayjs();
 
 interface ScheduleProps extends React.ComponentProps<"ul"> {
+	date: Dayjs;
 	timePeriod: string;
 	className?: string;
 }
 
-const todayDate = dayjs(new Date()).format("HH:mm");
-
 export default function Schedule({
+	date,
 	timePeriod,
 	className,
 	...props
 }: ScheduleProps) {
+	const { schedules } = useSchedule();
+
 	if (timePeriod === "morning") {
 		return (
 			<div className="flex flex-col max-w-170.5 border border-gray-600 rounded">
@@ -35,14 +39,19 @@ export default function Schedule({
 					className="p-5 border-t border-gray-600 flex flex-col gap-0.5"
 					{...props}
 				>
-					{exampleList.map((item) => {
-						const parsedHour = parseInt(item.hour);
-						if (parsedHour >= 9 && parsedHour <= 12) {
+					{schedules.map((schedule, index) => {
+						const parsedDate = dayjs(schedule.when);
+						const morningTime = dayjs(date).set("hour", 12).set("minute", 0);
+						if (
+							todayDate.isBefore(parsedDate) &&
+							parsedDate.isBefore(morningTime)
+						) {
 							return (
 								<ListItem
-									key={`${item.hour}-${item.name}`}
-									hour={item.hour}
-									name={item.name}
+									id={schedule.id}
+									key={`${schedule.when}-${index}`}
+									hour={parsedDate.format("HH:mm")}
+									name={schedule.client}
 								/>
 							);
 						}
@@ -68,14 +77,22 @@ export default function Schedule({
 					className="p-5 border-t border-gray-600 flex flex-col gap-0.5"
 					{...props}
 				>
-					{exampleList.map((item) => {
-						const parsedHour = parseInt(item.hour);
-						if (parsedHour >= 13 && parsedHour <= 18) {
+					{schedules.map((schedule, index) => {
+						const parsedDate = dayjs(schedule.when);
+						const morningTime = dayjs(date).set("hour", 12).set("minute", 0);
+						const afternoonTime = dayjs(date).set("hour", 18).set("minute", 0);
+
+						if (
+							todayDate.isBefore(parsedDate) &&
+							parsedDate.isAfter(morningTime) &&
+							parsedDate.isBefore(afternoonTime)
+						) {
 							return (
 								<ListItem
-									key={`${item.hour}-${item.name}`}
-									hour={item.hour}
-									name={item.name}
+									id={schedule.id}
+									key={`${schedule.when}-${index}`}
+									hour={parsedDate.format("HH:mm")}
+									name={schedule.client}
 								/>
 							);
 						}
@@ -100,14 +117,19 @@ export default function Schedule({
 				className="p-5 border-t border-gray-600 flex flex-col gap-0.5"
 				{...props}
 			>
-				{exampleList.map((item) => {
-					const parsedHour = parseInt(item.hour);
-					if (parsedHour >= 19 && parsedHour <= 22) {
+				{schedules.map((schedule, index) => {
+					const parsedDate = dayjs(schedule.when);
+					const afternoonTime = dayjs(date).set("hour", 18).set("minute", 0);
+					if (
+						todayDate.isBefore(parsedDate) &&
+						parsedDate.isAfter(afternoonTime)
+					) {
 						return (
 							<ListItem
-								key={`${item.hour}-${item.name}`}
-								hour={item.hour}
-								name={item.name}
+								id={schedule.id}
+								key={`${schedule.when}-${index}`}
+								hour={parsedDate.format("HH:mm")}
+								name={schedule.client}
 							/>
 						);
 					}
