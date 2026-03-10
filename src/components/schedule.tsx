@@ -7,8 +7,6 @@ import { ListItem } from "./listItem";
 import dayjs, { Dayjs } from "dayjs";
 import useSchedule from "../hooks/useSchedules";
 
-const todayDate = dayjs();
-
 interface ScheduleProps extends React.ComponentProps<"ul"> {
 	date: Dayjs;
 	timePeriod: string;
@@ -21,7 +19,7 @@ export default function Schedule({
 	className,
 	...props
 }: ScheduleProps) {
-	const { schedules } = useSchedule();
+	const { schedules, removeScheduleById } = useSchedule();
 
 	if (timePeriod === "morning") {
 		return (
@@ -41,10 +39,10 @@ export default function Schedule({
 				>
 					{schedules.map((schedule, index) => {
 						const parsedDate = dayjs(schedule.when);
-						const morningTime = dayjs(date).set("hour", 12).set("minute", 0);
+						const morningTimeByDate = date.set("hour", 12);
 						if (
-							todayDate.isBefore(parsedDate) &&
-							parsedDate.isBefore(morningTime)
+							date.isSame(parsedDate, "day") &&
+							parsedDate.isBefore(morningTimeByDate)
 						) {
 							return (
 								<ListItem
@@ -52,6 +50,7 @@ export default function Schedule({
 									key={`${schedule.when}-${index}`}
 									hour={parsedDate.format("HH:mm")}
 									name={schedule.client}
+									onClick={() => removeScheduleById(schedule.id)}
 								/>
 							);
 						}
@@ -79,13 +78,12 @@ export default function Schedule({
 				>
 					{schedules.map((schedule, index) => {
 						const parsedDate = dayjs(schedule.when);
-						const morningTime = dayjs(date).set("hour", 12).set("minute", 0);
-						const afternoonTime = dayjs(date).set("hour", 18).set("minute", 0);
-
+						const morningTimeByDate = date.set("hour", 12);
+						const afternoonTimeByDate = date.set("hour", 18);
 						if (
-							todayDate.isBefore(parsedDate) &&
-							parsedDate.isAfter(morningTime) &&
-							parsedDate.isBefore(afternoonTime)
+							date.isSame(parsedDate, "day") &&
+							parsedDate.isAfter(morningTimeByDate) &&
+							parsedDate.isBefore(afternoonTimeByDate)
 						) {
 							return (
 								<ListItem
@@ -93,6 +91,7 @@ export default function Schedule({
 									key={`${schedule.when}-${index}`}
 									hour={parsedDate.format("HH:mm")}
 									name={schedule.client}
+									onClick={() => removeScheduleById(schedule.id)}
 								/>
 							);
 						}
@@ -119,10 +118,10 @@ export default function Schedule({
 			>
 				{schedules.map((schedule, index) => {
 					const parsedDate = dayjs(schedule.when);
-					const afternoonTime = dayjs(date).set("hour", 18).set("minute", 0);
+					const afternoonTimeByDate = date.set("hour", 18);
 					if (
-						todayDate.isBefore(parsedDate) &&
-						parsedDate.isAfter(afternoonTime)
+						date.isSame(parsedDate, "day") &&
+						parsedDate.isAfter(afternoonTimeByDate)
 					) {
 						return (
 							<ListItem
@@ -130,6 +129,7 @@ export default function Schedule({
 								key={`${schedule.when}-${index}`}
 								hour={parsedDate.format("HH:mm")}
 								name={schedule.client}
+								onClick={() => removeScheduleById(schedule.id)}
 							/>
 						);
 					}

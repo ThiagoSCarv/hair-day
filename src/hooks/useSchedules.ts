@@ -11,8 +11,13 @@ export default function useSchedule() {
 		setSchedule([...schedules, schedule]);
 	}
 
+	function removeScheduleById(id: string) {
+		setSchedule(schedules.filter((schedule) => schedule.id !== id));
+	}
+
 	return {
 		createNewSchedule,
 		schedules,
+		removeScheduleById,
 	};
 }
