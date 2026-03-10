@@ -1,10 +1,6 @@
 import Form from "./components/form";
 import LogoSvg from "../public/Logo.svg?react";
-import Schedule from "./components/schedule";
-import dayjs from "dayjs";
 import ListSchedules from "./components/listSchedules";
-
-const todayDate = dayjs();
 
 function App() {
 	return (

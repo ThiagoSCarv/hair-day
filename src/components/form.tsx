@@ -7,7 +7,6 @@ import dayjs, { Dayjs } from "dayjs";
 import InputText from "./inputText";
 import Button from "./button";
 import useSchedule from "../hooks/useSchedules";
-import { hoursForRender } from "../utils/hoursForRender";
 
 const todayDate = dayjs();
 

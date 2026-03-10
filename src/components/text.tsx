@@ -18,12 +18,14 @@ export const textVariants = cva("font-sans", {
 
 interface TextProps extends VariantProps<typeof textVariants> {
 	as?: keyof React.JSX.IntrinsicElements;
+	htmlFor?: string;
 	className?: string;
 	children?: React.ReactNode;
 }
 
 export default function Text({
 	as = "span",
+	htmlFor,
 	children,
 	variant,
 	className,
