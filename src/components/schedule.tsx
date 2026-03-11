@@ -39,7 +39,7 @@ export default function Schedule({
 				>
 					{schedules.map((schedule, index) => {
 						const parsedDate = dayjs(schedule.when);
-						const morningTimeByDate = date.set("hour", 12);
+						const morningTimeByDate = date.set("hour", 13);
 						if (
 							date.isSame(parsedDate, "day") &&
 							parsedDate.isBefore(morningTimeByDate)
@@ -79,7 +79,7 @@ export default function Schedule({
 					{schedules.map((schedule, index) => {
 						const parsedDate = dayjs(schedule.when);
 						const morningTimeByDate = date.set("hour", 12);
-						const afternoonTimeByDate = date.set("hour", 18);
+						const afternoonTimeByDate = date.set("hour", 19);
 						if (
 							date.isSame(parsedDate, "day") &&
 							parsedDate.isAfter(morningTimeByDate) &&
